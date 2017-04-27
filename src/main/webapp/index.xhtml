@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CRX test task</title>
+    </h:head>
+    <h:body>
+
+        <h:form>
+            <p:growl id="growl" showDetail="true" />
+            <center>
+                <h:panelGrid columns="1" style="margin-bottom: 10px">
+
+                    <p:inputText id="arrSize" value="#{mainView.textValue}" style="width:254px" maxlength="1">
+                        <p:ajax event="keyup" update="out growl sbmButton lab" listener="#{mainView.renderInitialArray}" />
+                    </p:inputText>
+                    <p:watermark for="arrSize" value="input array size" id="watermark" />
+
+                    <p:dataTable id="out" style="width:263px;" value="#{mainView.initialArray}" var="singleArrayElement" type="ordered">
+                        <p:column headerText="generated array">
+                            <p:outputLabel value="#{singleArrayElement}" />
+                        </p:column>
+                    </p:dataTable>
+                    <p:commandButton value="calculate" id="sbmButton" update="lab" style="width:260px" actionListener="#{mainView.submitArrayAction}" disabled="#{mainView.submitIsDisabled}"/>
+                    <p:outputLabel value="#{mainView.answer}" id="lab" />
+                </h:panelGrid>
+            </center>
+        </h:form>
+    </h:body>
+</html>
+
