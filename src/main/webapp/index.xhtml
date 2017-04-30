@@ -26,7 +26,7 @@
                         </p:column>
                     </p:dataTable>
                     <p:commandButton value="calculate" id="sbmButton" update="lab" style="width:260px" actionListener="#{mainView.submitArrayAction}" disabled="#{mainView.submitIsDisabled}"/>
-                    <p:outputLabel value="#{mainView.answer}" id="lab" />
+                    <p:outputLabel value="Your answer is: #{mainView.answer}" id="lab" />
                 </h:panelGrid>
             </center>
         </h:form>

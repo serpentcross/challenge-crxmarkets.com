@@ -33,6 +33,7 @@ public class MainView {
             answer = CodeStrings.ANSWER;
 
             Random random = new Random();
+
             arraySize = Integer.parseInt(textValue);
 
             initialArray = new String[arraySize];
@@ -43,7 +44,8 @@ public class MainView {
                 initialArray = null;
             }
 
-            for(int i = 0; i < arraySize; i++) {
+            for (int i = 0; i < arraySize; i++) {
+                //Filling our array by generating random numbers
                 initialArray[i] = Integer.toString(random.nextInt(arraySize) + 1);
                 intArray[i] = Integer.parseInt(initialArray[i]);
             }
@@ -51,6 +53,7 @@ public class MainView {
             submitIsDisabled = false;
 
         } catch (NumberFormatException ex) {
+            //Displaying an error, if something goes wrong
             submitIsDisabled = true;
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", CodeStrings.ERROR_TEXT + textValue);
             FacesContext.getCurrentInstance().addMessage(null, message);
@@ -58,10 +61,11 @@ public class MainView {
     }
 
     public void submitArrayAction(ActionEvent actionEvent) {
-        answer = Integer.toString(calculate(getIntArray()));
+        //Calculating the answer by calling method
+        answer = Integer.toString(calculateAnswer(getIntArray()));
     }
 
-    private static int calculate(int[] src) {
+    private static int calculateAnswer(int[] src) {
 
         int volume = 0;
 
